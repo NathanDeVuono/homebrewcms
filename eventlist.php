@@ -1,6 +1,6 @@
 <?php
   function eventList() { 
-    $mysqli = new mysqli("localhost","","","tsp");
+    $mysqli = new mysqli("localhost","root","1purplemonkey","tsp");
     if ($mysqli->connect_error) {
       die('Connect Error (' . $mysqli->connect_errno . ') '
               . $mysqli->connect_error);
@@ -14,10 +14,11 @@
     $date = $row['2'];
     $location = $row['3'];
     $description = $row['4'];
-    $view = "<a href='viewevent.php?title=$title&date=$date&location=$location&description=$description'>$title</a>";
+    $view = "<a href='viewevent.php?title=$title&date=$date&location=$location&description=$description'>$date: $title</a>";
     $edit = "<a href='editevent.php?title=$title&date=$date&location=$location&description=$description'>Edit</a>";
-    $delete = "<a href='deleteevent.php?title=$title&date=$date&location=$location&description=$description' onclick='confirmDel();'>Delete</a>";
+    $delete = "<a href='deleteevent.php?title=$title&date=$date&location=$location&description=$description'>Delete</a>";
     echo "<li>$view <small>$edit $delete</small></li>";
-    } 
+    }
+    $mysqli->close(); 
   }
 ?>

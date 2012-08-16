@@ -3,15 +3,14 @@
 require '_existandvalue.php';
 if (
    ifExistAndValue('title')      &&
-   ifExistAndValue('date')        &&
    ifExistAndValue('location')    &&
    ifExistAndValue('description')
    ) {
   $title = $_POST['title'];
-  $date = $_POST['date'];
+  $date = isset($_REQUEST["date1"]) ? $_REQUEST["date1"] : "";
   $location = $_POST['location'];
   $description = $_POST['description'];
-  $mysqli = new mysqli("localhost","","","tsp");
+  $mysqli = new mysqli("localhost","root","1purplemonkey","tsp");
   if ($mysqli->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') '
             . $mysqli->connect_error);
@@ -33,6 +32,7 @@ if (
     header('location:addevent.php');
     // echo $_SESSION['message'];
   }
+  $mysqli->close();
 }
 else {
   $_SESSION['message'] = "Please fill out the whole form.";

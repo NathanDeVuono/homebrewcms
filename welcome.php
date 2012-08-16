@@ -18,9 +18,9 @@
     <p><a href="addevent.php">Add An Event</a></p>
     <p><?php
     require '_existandvalue.php';
-      if(ifExistAndValue($_SESSION['message'])){
+      if(isset($_SESSION['message'])){
         echo $_SESSION['message'];
-        // $_SESSION['message']=null;
+        $_SESSION['message']=null;
       }
     ?></p>
     <ul>

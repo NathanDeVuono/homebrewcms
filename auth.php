@@ -18,7 +18,7 @@ if(
   $user = trim($_POST['username']);
   $pass = trim($_POST['password']);
 
-  $mysqli = new mysqli('localhost', '', '', 'tsp');
+  $mysqli = new mysqli('localhost', 'root', '1purplemonkey', 'tsp');
     if ($mysqli->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') '
             . $mysqli->connect_error);

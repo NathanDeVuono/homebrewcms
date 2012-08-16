@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Add Event - Tech Support Professional - BCIT</title>
   <link rel="stylesheet" href="styles.css">
+  <script language="javascript" src="calendar.js"></script>
   <?php
     require 'check.php';
   ?>
@@ -16,7 +17,13 @@
         <li><label for="title">Event Title:</label></li>
         <li><input type="text" name="title" id="title" required placeholder="Event Title"></li>
         <li><label for="Date">Date:</label></li>
-        <li><input type="date" name="date" id="date" required placeholder="January 1st"></li>
+        <li><?php
+          require_once('tc_calendar.php');
+          $myCalendar = new tc_calendar("date1", true);
+          $myCalendar->setIcon("images/iconCalendar.gif");
+          $myCalendar->setDate(1, 1, 2000);
+          $myCalendar->writeScript();   
+          ?></li>
         <li><label for="location">Location for the event:</label></li>
         <li><input type="text" name="location" id="location" required placeholder="Room 471/Street Address"></li>
         <li><label for="description">Event Description:</label></li>
@@ -26,7 +33,7 @@
     </form>
     <div id="error"><?php
     require '_existandvalue.php';
-      if(ifExistAndValue($_SESSION['message'])){
+      if(isset($_SESSION['message'])){
         echo $_SESSION['message'];
         $_SESSION['message']=null;
       }

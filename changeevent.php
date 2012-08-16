@@ -11,13 +11,13 @@ if (
   $date = $_POST['date'];
   $location = $_POST['location'];
   $description = $_POST['description'];
-  $oldVals = explode(", ", $_SESSION['oldVals']);
+  $oldVals = explode("/. ", $_SESSION['oldVals']);
   $oldTitle = $oldVals['0'];
   $oldDate = $oldVals['1'];
   $oldLocation = $oldVals['2'];
   $oldDescription = $oldVals['3'];
 
-  $mysqli = new mysqli("localhost","","","tsp");
+  $mysqli = new mysqli("localhost","root","1purplemonkey","tsp");
   if ($mysqli->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') '
             . $mysqli->connect_error);
@@ -27,6 +27,8 @@ if (
 
 
   $newEvent = "UPDATE events SET title='".$title."', date='".$date."', location='".$location."', description='".$description."' WHERE title='".$oldTitle."' AND date='".$oldDate."' AND location='".$oldLocation."' AND description='".$oldDescription."'";
+  // echo $newEvent;
+  // die();
   $result = $mysqli->query($newEvent);
   if ($result) {
     $_SESSION['message'] = "<p>Thank you for editing this event.<br>

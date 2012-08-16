@@ -27,6 +27,7 @@
         $_SESSION['message']=null;
       }
     ?></div>
+    <p><a href="welcome.php">Back to the Events List</a></p>
   </div>
 </body>
 </html>

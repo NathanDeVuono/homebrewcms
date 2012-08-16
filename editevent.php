@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Edit Event - Tech Support Professional - BCIT</title>
   <link rel="stylesheet" href="styles.css">
+  <script language="javascript" src="calendar.js"></script>
   <?php
     require 'check.php';
   ?>
@@ -17,10 +18,10 @@
         $location = $_GET['location'];
         $description = $_GET['description'];
         $oldVals = array($title, $date, $location, $description);
-        $_SESSION['oldVals'] = implode(", ", $oldVals);
+        $_SESSION['oldVals'] = implode("/. ", $oldVals);
       ?>
       <ul>
-        <li><legend>Add a new event to the calendar</legend></li>
+        <li><legend>Edit an existing event on the calendar</legend></li>
         <li><label for="title">Event Title:</label></li>
         <li><input type="text" name="title" id="title" placeholder="Event Title" value="<?php
           echo $title;
