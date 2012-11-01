@@ -34,18 +34,14 @@
     <!--End of navContent--> 
   </nav>
   <div id="wrapper">
-  	<article class="loginForm">
+	<article class="loginForm">
     <ul>
       <li>Event Title:</li>
-      <li><?php echo $_GET['title'];?></li>
+      <li><?php echo $_GET['test'];?></li>
       <li>Event Date:</li>
       <li><?php echo $_GET['date'];?></li>
-      <li>Number of days:</li>
-      <li><?php echo $_GET['days'];?></li>
-      <li>Event Location:</li>
-      <li><?php echo $_GET['location'];?></li>
-      <li>Event Instructor:</li>
-      <li><?php echo $_GET['instructor'];?></li>
+      <li>Description:</li>
+      <li><?php echo $_GET['description'];?></li>
     </ul>
    
     <p><a href="welcome.php">Back to the Events List</a></p>

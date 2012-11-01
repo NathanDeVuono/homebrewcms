@@ -1,5 +1,4 @@
 <?php
-  require 'check.php';
   $mysqli = new mysqli("localhost","root","1purplemonkey","tsp");
   if ($mysqli->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') '
@@ -11,7 +10,7 @@
     die("Error selecting data in table: events");
   }
   echo "<table>";
-  echo '<tr><th>Event:</th><th>When:</th><th>Where:</th><th>Description:</th></tr>';
+  echo '<tr><th>Event:</th><th>When:</th><th>How Long:</th><th>Where:</th><th>Instructor:</th><th>Description:</th></tr>';
   while ($row = $result->fetch_row()){
     
     echo "<tr>";
@@ -23,4 +22,5 @@
     
   }
 echo "</table>";
+$mysqli->close(); 
 ?>

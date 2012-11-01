@@ -40,12 +40,8 @@
       <li><?php echo $_GET['title'];?></li>
       <li>Event Date:</li>
       <li><?php echo $_GET['date'];?></li>
-      <li>Number of days:</li>
-      <li><?php echo $_GET['days'];?></li>
-      <li>Event Location:</li>
+      <li>description:</li>
       <li><?php echo $_GET['location'];?></li>
-      <li>Event Instructor:</li>
-      <li><?php echo $_GET['instructor'];?></li>
     </ul>
    
     <p><a href="welcome.php">Back to the Events List</a></p>

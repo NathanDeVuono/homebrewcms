@@ -2,8 +2,9 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Add Event - Tech Support Professional - BCIT</title>
+  <title>Edit Test - Tech Support Professional - BCIT</title>
   <link rel="stylesheet" href="home.css">
+  <script language="javascript" src="calendar.js"></script>
   <?php
     require 'check.php';
   ?>
@@ -34,21 +35,39 @@
     <!--End of navContent--> 
   </nav>
   <div id="wrapper">
-  	<article class="loginForm">
-    <ul>
-      <li>Event Title:</li>
-      <li><?php echo $_GET['title'];?></li>
-      <li>Event Date:</li>
-      <li><?php echo $_GET['date'];?></li>
-      <li>Number of days:</li>
-      <li><?php echo $_GET['days'];?></li>
-      <li>Event Location:</li>
-      <li><?php echo $_GET['location'];?></li>
-      <li>Event Instructor:</li>
-      <li><?php echo $_GET['instructor'];?></li>
-    </ul>
-   
-    <p><a href="welcome.php">Back to the Events List</a></p>
+  <article class="loginForm">
+    <form action="changeexcurr.php" method="post" id="edittest">
+      <?php
+        $title = $_GET['title'];
+        $date = $_GET['date'];
+        $location = $_GET['location'];
+        $oldVals = array($title, $date, $location);
+        $_SESSION['oldVals'] = implode("/. ", $oldVals);
+      ?>
+      <ul>
+        <li><legend class="adminMessage">Edit an existing extracurricular event on the calendar</legend></li>
+        <li><label for="title">Event Title:</label></li>
+        <li><input type="text" name="title" id="title" placeholder="Event title" value="<?php
+          echo $title;
+          ?>"></li>
+        <li><label for="Date">Date:</label></li>
+        <li><input type="date" name="date" id="date" placeholder="January 1st" value="<?php
+          echo $date;
+          ?>"></li>
+        <li><label for="location">Event Location:</label></li>
+        <li><input type="text" name="location" id="location" placeholder="The Location" value="<?php
+          echo $location;
+          ?>"></li>
+        <li><input type="submit" value="Submit"><input type="reset" value="Reset"></li>
+      </ul>
+    </form>
+    <div id="error"><?php
+      if(isset($_SESSION['message'])){
+        echo $_SESSION['message'];
+        $_SESSION['message']=null;
+      }
+    ?>
+    </div>
     </article>
   </div>
 </body>

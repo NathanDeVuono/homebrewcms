@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Add Event - Tech Support Professional - BCIT</title>
   <link rel="stylesheet" href="home.css">
+  <script language="javascript" src="calendar.js"></script>
   <?php
     require 'check.php';
   ?>
@@ -34,21 +35,32 @@
     <!--End of navContent--> 
   </nav>
   <div id="wrapper">
-  	<article class="loginForm">
-    <ul>
-      <li>Event Title:</li>
-      <li><?php echo $_GET['title'];?></li>
-      <li>Event Date:</li>
-      <li><?php echo $_GET['date'];?></li>
-      <li>Number of days:</li>
-      <li><?php echo $_GET['days'];?></li>
-      <li>Event Location:</li>
-      <li><?php echo $_GET['location'];?></li>
-      <li>Event Instructor:</li>
-      <li><?php echo $_GET['instructor'];?></li>
-    </ul>
-   
-    <p><a href="welcome.php">Back to the Events List</a></p>
+  <article class="loginForm">
+    <form action="newexcurr.php" method="post" id="newevent">
+      <ul>
+        <li><legend class="adminMessage">Add a new test to the calendar</legend></li>
+        <li><label for="title">Event Title:</label></li>
+        <li><input type="text" name="title" id="title" required placeholder="Test Title"></li>
+        <li><label for="Date">Date:</label></li>
+        <li><?php
+          require_once('tc_calendar.php');
+          $myCalendar = new tc_calendar("date1", true);
+          $myCalendar->setIcon("images/iconCalendar.gif");
+          $myCalendar->setDate(1, 1, 2012);
+          $myCalendar->writeScript();   
+          ?></li>
+        <li><label for="location">Event Description:</label></li>
+        <li><textarea name="location" id="location" cols="18" rows="10" placeholder="Location of event." required></textarea></li>
+        <li><input type="submit" value="Submit"><input type="reset" value="Reset"></li>
+      </ul>
+    </form>
+    <div id="error"><?php
+    require '_existandvalue.php';
+      if(isset($_SESSION['message'])){
+        echo $_SESSION['message'];
+        $_SESSION['message']=null;
+      }
+    ?></div>
     </article>
   </div>
 </body>

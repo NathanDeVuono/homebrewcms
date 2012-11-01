@@ -4,10 +4,10 @@
   require 'check.php';
   require '_existandvalue.php';
 
-  $title = $_GET['title'];
+  $test = $_GET['test'];
   $date = $_GET['date'];
   $location = $_GET['location'];
-  $instructor = $_GET['instructor'];
+  $description = $_GET['description'];
   
 
   $mysqli = new mysqli($dbHost,$dbUser,$dbPass,$dbDatabase);
@@ -19,25 +19,24 @@
 // DELETE FROM tablename WHERE id='value' AND firstname='value'
 
 
-  $newEvent = "DELETE FROM events WHERE title='".$title."' AND date='".$date."' AND location='".$location."' AND instructor='".$instructor."'";
+  $newEvent = "DELETE FROM tests WHERE test='".$test."' AND date='".$date."' AND description='".$description."'";
   // echo $newEvent;
   // die();
   $result = $mysqli->query($newEvent);
   if ($result) {
-    $_SESSION['message'] = "<p>You have deleted this event.<br>
+    $_SESSION['message'] = "<p>You have deleted this test.<br>
     Title: $title <br>
     Date: $date <br>
     Location: $location <br>
-    Instructor: $instructor
+    Description: $description
     </p>";
     header('location:welcome.php');
     // echo $_SESSION['message'];
   }
   else {
-    $_SESSION['message'] = "There was an error deleting the event.  Please try again.";
-    header('location:addevent.php');
+    $_SESSION['message'] = "There was an error deleting the test.  Please try again.";
+    header('location:welcome.php');
     // echo $_SESSION['message'];
   }
-
 
 ?>

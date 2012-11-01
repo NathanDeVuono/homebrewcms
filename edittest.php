@@ -2,8 +2,9 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Add Event - Tech Support Professional - BCIT</title>
+  <title>Edit Test - Tech Support Professional - BCIT</title>
   <link rel="stylesheet" href="home.css">
+  <script language="javascript" src="calendar.js"></script>
   <?php
     require 'check.php';
   ?>
@@ -35,20 +36,39 @@
   </nav>
   <div id="wrapper">
   	<article class="loginForm">
-    <ul>
-      <li>Event Title:</li>
-      <li><?php echo $_GET['title'];?></li>
-      <li>Event Date:</li>
-      <li><?php echo $_GET['date'];?></li>
-      <li>Number of days:</li>
-      <li><?php echo $_GET['days'];?></li>
-      <li>Event Location:</li>
-      <li><?php echo $_GET['location'];?></li>
-      <li>Event Instructor:</li>
-      <li><?php echo $_GET['instructor'];?></li>
-    </ul>
-   
-    <p><a href="welcome.php">Back to the Events List</a></p>
+    <form action="changetest.php" method="post" id="edittest">
+      <?php
+        $test = $_GET['test'];
+        $date = $_GET['date'];
+        $description = $_GET['description'];
+        $oldVals = array($test, $date, $description);
+        $_SESSION['oldVals'] = implode("/. ", $oldVals);
+      ?>
+      <ul>
+        <li><legend class="adminMessage">Edit an existing test on the calendar</legend></li>
+        <li><label for="test">Test Title:</label></li>
+        <li><input type="text" name="test" id="test" placeholder="Test title" value="<?php
+          echo $test;
+          ?>"></li>
+        <li><label for="Date">Date:</label></li>
+        <li><input type="date" name="date" id="date" placeholder="January 1st" value="<?php
+          echo $date;
+          ?>"></li>
+        <li><label for="description">Test Description:</label></li>
+        <li><textarea name="description" id="description" cols="15" rows="10" placeholder="A description of the event."><?php
+          echo $description;
+          ?></textarea></li>
+        <li><input type="submit" value="Submit"><input type="reset" value="Reset"></li>
+      </ul>
+    </form>
+    <div id="error"><?php
+    require '_existandvalue.php';
+      if(ifExistAndValue($_SESSION['message'])){
+        echo $_SESSION['message'];
+        $_SESSION['message']=null;
+      }
+    ?>
+    </div>
     </article>
   </div>
 </body>

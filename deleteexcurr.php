@@ -2,12 +2,10 @@
 
   require 'db_user_vars.php';
   require 'check.php';
-  require '_existandvalue.php';
 
   $title = $_GET['title'];
   $date = $_GET['date'];
   $location = $_GET['location'];
-  $instructor = $_GET['instructor'];
   
 
   $mysqli = new mysqli($dbHost,$dbUser,$dbPass,$dbDatabase);
@@ -19,25 +17,23 @@
 // DELETE FROM tablename WHERE id='value' AND firstname='value'
 
 
-  $newEvent = "DELETE FROM events WHERE title='".$title."' AND date='".$date."' AND location='".$location."' AND instructor='".$instructor."'";
+  $newEvent = "DELETE FROM exCurrEvents WHERE title='".$title."' AND date='".$date."' AND location='".$location."'";
   // echo $newEvent;
   // die();
   $result = $mysqli->query($newEvent);
   if ($result) {
-    $_SESSION['message'] = "<p>You have deleted this event.<br>
+    $_SESSION['message'] = "<p>You have deleted this Event.<br>
     Title: $title <br>
     Date: $date <br>
-    Location: $location <br>
-    Instructor: $instructor
+    Location: $location
     </p>";
     header('location:welcome.php');
     // echo $_SESSION['message'];
   }
   else {
-    $_SESSION['message'] = "There was an error deleting the event.  Please try again.";
-    header('location:addevent.php');
+    $_SESSION['message'] = "There was an error deleting the title.  Please try again.";
+    header('location:welcome.php');
     // echo $_SESSION['message'];
   }
-
 
 ?>
